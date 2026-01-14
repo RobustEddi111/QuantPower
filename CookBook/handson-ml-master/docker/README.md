@@ -133,7 +133,7 @@ If you are using Docker 19.03 or above, you can run:
 
 ```bash
 $ cd /path/to/project/handson-ml
-$ docker run --name handson-ml --gpus all -p 8888:8888 -p 6006:6006 --log-opt mode=non-blocking --log-opt max-buffer-size=50m -v `pwd`:/home/devel/handson-ml ageron/handson-ml:latest-gpu /opt/conda/envs/tf1/bin/jupyter notebook --ip='0.0.0.0' --port=8888 --no-browser
+$ docker run --name handson-ml --gpus all -p 8888:8888 -p 6006:6006 --log-opt mode=non-blocking --log-opt max-buffer-size=50m -v `pwd`:/home/devel/handson-ml ageron/handson-ml:latest-gpu /opt/conda/envs/tf1/bin/jupyter notebooks --ip='0.0.0.0' --port=8888 --no-browser
 ```
 
 If you are using an older version of Docker, then replace `--gpus all` with `--runtime=nvidia`.

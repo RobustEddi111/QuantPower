@@ -98,7 +98,7 @@ def main():
         "DELETED" if the working copy and checkpointed version are identical
         (checkpoint will be deleted),
         "missing" if there is a checkpoint but no corresponding working file can be found
-        or "modified" if notebook and the checkpoint are not byte-to-byte identical.
+        or "modified" if notebooks and the checkpoint are not byte-to-byte identical.
         If removal of checkpoints results in empty ".ipynb_checkpoints" directory
         that directory is also deleted.
         """) #, formatter_class=argparse.RawDescriptionHelpFormatter)

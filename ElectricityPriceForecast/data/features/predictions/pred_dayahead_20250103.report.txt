@@ -1,0 +1,5 @@
+Forecast Report for pred_dayahead_20250103.csv
+Samples: 24
+MAE: 1.4843
+RMSE: 1.8409
+MAPE(%): 0.5135

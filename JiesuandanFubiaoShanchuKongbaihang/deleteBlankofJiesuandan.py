@@ -1,7 +1,7 @@
 import pandas as pd
 import re
 import os
-
+from constant import CONSTANT
 def delete_row(inputFile, sheetName, outputFile):
     # 自动判断文件扩展名来选用合适的引擎
     ext = os.path.splitext(inputFile)[-1].lower()
@@ -76,9 +76,9 @@ def process_folder(inputFolder, sheetName, outputFolder):
             delete_row(inputFile,sheetName, outputFile)
 
 
-# inputFolder = constant.CONSTANT.inputFolder
-# sheet = constant.CONSTANT.ownerDataSheet  # 要选择的工作表名称
-# outputFolder = constant.CONSTANT.outputFolder
-process_folder("D:\\Test\\结算单202505", "sheet1", "D:\\Test\\结算单202505")
+inputFolder = CONSTANT.inputFolder
+sheet = CONSTANT.ownerDataSheet  # 要选择的工作表名称
+outputFolder = CONSTANT.outputFolder
+process_folder(inputFolder, sheet, outputFolder)
 
 

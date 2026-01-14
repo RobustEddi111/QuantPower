@@ -4,7 +4,7 @@
 """
 
 # 数据路径
-inputFolder="D:\\Test\\结算单2025年5月"
+inputFolder="D:\\工作\\特变电工\\08交易\\疆内项目\\电力交易复盘会\\2025年10月\\结算单删除空行"
 # 业主数据提取表sheet名
 ownerDataSheet="sheet1"
-outputFolder="D:\\Test\\结算单2025年5月"
+outputFolder="D:\\工作\\特变电工\\08交易\\疆内项目\\电力交易复盘会\\2025年10月\\结算单删除空行"

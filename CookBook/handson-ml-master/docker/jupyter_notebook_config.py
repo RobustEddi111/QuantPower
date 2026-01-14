@@ -2,7 +2,7 @@ import os
 import subprocess
 
 def export_script_and_view(model, os_path, contents_manager):
-    if model["type"] != "notebook":
+    if model["type"] != "notebooks":
         return
     dir_name, file_name = os.path.split(os_path)
     file_base, file_ext = os.path.splitext(file_name)

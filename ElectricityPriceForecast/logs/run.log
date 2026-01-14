@@ -1,0 +1,12 @@
+2025-11-25 14:47:43,989 - src.dataloader - INFO - Loading cleaned data from D:\Develop\CodesFiles\Python\pythonProject\QuantPower\ElectricityPriceForecast\data\cleaned\cleaned_price_data.csv
+2025-11-25 14:47:44,017 - src.features - INFO - Building features...
+2025-11-25 14:47:44,186 - __main__ - INFO - Fold 1 metrics: {'MAE': 16.109999999999996, 'RMSE': 18.69018637324589, 'MAPE(%)': 5.390470247871099}
+2025-11-25 14:47:44,341 - __main__ - INFO - Fold 2 metrics: {'MAE': 2.5616666666666745, 'RMSE': 2.8978318044128644, 'MAPE(%)': 0.9456197155148409}
+2025-11-25 14:47:44,496 - __main__ - INFO - Fold 3 metrics: {'MAE': 3.7237499999999955, 'RMSE': 4.310195036190356, 'MAPE(%)': 1.2416469074144085}
+2025-11-25 14:47:44,797 - __main__ - INFO - Model saved to D:\Develop\CodesFiles\Python\pythonProject\QuantPower\ElectricityPriceForecast\models\dayahead\dayahead_price_model.pkl
+2025-11-25 14:48:37,771 - __main__ - INFO - Start D+1 forecast for date = 2025-01-03
+2025-11-25 14:48:37,777 - src.model_predict - INFO - Loading model from D:\Develop\CodesFiles\Python\pythonProject\QuantPower\ElectricityPriceForecast\models\dayahead\dayahead_price_model.pkl
+2025-11-25 14:48:38,416 - src.features - INFO - Building features...
+2025-11-25 14:48:38,449 - __main__ - INFO - Prediction saved to: D:\Develop\CodesFiles\Python\pythonProject\QuantPower\ElectricityPriceForecast\data\features\predictions\pred_dayahead_20250103.csv
+2025-11-25 14:51:39,082 - __main__ - INFO - Daily metrics: {'MAE': 1.4843055555555484, 'RMSE': 1.8408968979518836, 'MAPE(%)': 0.5134764860174779}
+2025-11-25 14:51:39,082 - __main__ - INFO - Report saved to data\features\predictions\pred_dayahead_20250103.report.txt
