@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-BESS 节点电价套利收益测算（Gurobi版）- 月策略口径B（一个月一套策略 + 月均价收益）
+BESS 节点电价套利收益测算（Gurobi版）- 月策略口径（一个月一套策略 + 月均价收益）
 说明：
 - 对每个 node + market + month，先构造 96点“月代表性价格曲线”（同一slot的月均价）
 - 在该代表曲线上优化出“月策略”（一套96点充/放电功率）
@@ -478,7 +478,7 @@ def make_investment_outputs_monthly(monthly_summary: pd.DataFrame, out_xlsx: str
     - RT-DA 差异Top10（增益/减益）
     - 月度明细（每节点每月）
     """
-    # 先按 node+market 汇总全年（月收益求和）
+    # 先按 node+market 汇总全年（月收益求和）;把同一节点同一市场的各个月份加总，得到“全期/全年”的结果（按你数据跨度）
     total = monthly_summary.groupby(["node", "market"], as_index=False).agg(
         months=("month", "count"),
         profit_yuan=("profit_yuan", "sum"),
@@ -496,7 +496,7 @@ def make_investment_outputs_monthly(monthly_summary: pd.DataFrame, out_xlsx: str
     )
     total["profit_yuan_per_mwh_capacity"] = total["profit_yuan"] / E_MWH
     total["profit_yuan_per_mw_power"] = total["profit_yuan"] / P_MW
-
+    # 分开取DA和RT排名
     da = total[total["market"] == "DA"].sort_values("profit_yuan", ascending=False).reset_index(drop=True)
     rt = total[total["market"] == "RT"].sort_values("profit_yuan", ascending=False).reset_index(drop=True)
     da["rank"] = da.index + 1
@@ -525,7 +525,7 @@ def make_investment_outputs_monthly(monthly_summary: pd.DataFrame, out_xlsx: str
 
         monthly_summary.sort_values(["node", "market", "month"]).to_excel(w, sheet_name="Monthly_Summary", index=False)
 
-    print(f"已生成投决输出Excel（月口径B）：{out_xlsx}")
+    print(f"已生成投决输出Excel（月口径）：{out_xlsx}")
 
 
 def main():
@@ -541,7 +541,7 @@ def main():
     monthly_strategy.to_csv(monthly_strategy_csv, index=False, encoding="utf-8-sig")
 
     # 输出Excel（投决Top10 + 差异 + 月明细）
-    out_xlsx = os.path.join(OUT_DIR, f"储能节点收益_TOP{TOPN}_月策略口径B_日前实时对比.xlsx")
+    out_xlsx = os.path.join(OUT_DIR, f"储能节点收益_TOP{TOPN}_月策略口径_日前实时对比.xlsx")
     make_investment_outputs_monthly(monthly_summary, out_xlsx, topn=TOPN)
 
     # 另存：月策略96点到Excel（有时很大，单独一个文件更清爽）
