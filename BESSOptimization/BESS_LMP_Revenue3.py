@@ -3,6 +3,7 @@
 BESS 节点电价套利收益测算（Gurobi版）- 月策略口径（一个月一套策略 + 月均价收益）
 说明：
 - 对每个 node + market + month，先构造 96点“月代表性价格曲线”（同一slot的月均价）
+- 考虑四项费用
 - 在该代表曲线上优化出“月策略”（一套96点充/放电功率）
 - 月收益用“代表曲线收益 × 当月天数”计算（期望收益口径）
 - 输出投决级Excel：月度Top10、实时-日前差异Top10、全量对比、月策略96点
@@ -22,21 +23,21 @@ import gurobipy as gp
 from gurobipy import GRB
 from tqdm import tqdm
 
-
+##山西
 # ========= 文件路径需要改这里 =========
 DATA_DIR = r"D:\工作\特变电工\13项目\储能充放电节点收益分析\储能节点收益分析\山西2025年节电电价数据"
-OUT_DIR  = r"D:\工作\特变电工\13项目\储能充放电节点收益分析\储能节点收益分析\山西2025年节电电价数据储能收益测算-按月分时"
+OUT_DIR  = r"D:\工作\特变电工\13项目\储能充放电节点收益分析\储能节点收益分析\山西2025年节电电价数据储能收益测算-按月分时-考虑四项费用"
 # =================================
 os.makedirs(OUT_DIR, exist_ok=True)
 
 # ---------- 储能参数（按投决口径自行修改） ----------
 P_MW = 100.0          # 功率 MW
 E_MWH = 200.0         # 容量 MWh
-ETA_C = 0.95          # 充电效率
-ETA_D = 0.95          # 放电效率
-SOC_MIN = 0.10 * E_MWH
-SOC_MAX = 0.90 * E_MWH
-SOC0_FRAC = 0.50      # 每天初始SOC占比（并要求日末回到初值）
+ETA_C = 0.92          # 充电效率
+ETA_D = 0.92          # 放电效率
+SOC_MIN = 0.05 * E_MWH
+SOC_MAX = 1 * E_MWH
+SOC0_FRAC = 0.05      # 每天初始SOC占比（并要求日末回到初值）
 DT_H = 0.25           # 15min=0.25h
 # P_MW：充/放电功率上限（MW）。
 #
@@ -52,6 +53,17 @@ DT_H = 0.25           # 15min=0.25h
 
 # 可选：限制每日等效循环次数EFC（0=不启用该参数），例如 1.0 / 2.0# MAX_EQ_CYCLES_PER_DAY：每日等效循环上限（0 表示不限制）。
 MAX_EQ_CYCLES_PER_DAY = 0
+
+# ---------四项费用（元/MWh）
+transmission_fee =29;        #输配电费
+system_operation_fee =28.605;   # 系统运行费折价
+government_fund = 43.36875;        # 政府性基金及附加
+line_loss_fee = 13.032;          # 上网环节线损电价
+add_cost_yuan_per_mwh = transmission_fee + system_operation_fee + government_fund + line_loss_fee #四项费用合计
+buy_fee  = add_cost_yuan_per_mwh   # 充电侧加费
+sell_fee = 0.0                    # 放电侧不扣费（默认口径）
+
+
 
 # 输出 TopN
 TOPN = 10
@@ -250,9 +262,14 @@ def optimize_profile_gurobi(prices_mwh_96):
     # soc[t]：时段开始时SOC（MWh），所以有T + 1个点
     #
     # y[t]：状态变量，互斥开关（二进制），保证同一时段不同时充放(y[t]=1-->t时刻充电，y[t]=0-->t时刻放电)
-
+    # 考虑四项费用的目标函数
     m.setObjective(
-        gp.quicksum(prices_mwh_96[t] * (p_dis[t] * DT_H - p_ch[t] * DT_H) for t in range(T)),
+        gp.quicksum(
+            # TODO
+            (prices_mwh_96[t]+buy_fee) * (p_dis[t] * DT_H)
+            -(prices_mwh_96[t]+buy_fee) * (p_ch[t] * DT_H)
+            for t in range(T)
+        ),
         GRB.MAXIMIZE
     )
 
@@ -541,11 +558,11 @@ def main():
     monthly_strategy.to_csv(monthly_strategy_csv, index=False, encoding="utf-8-sig")
 
     # 输出Excel（投决Top10 + 差异 + 月明细）
-    out_xlsx = os.path.join(OUT_DIR, f"储能节点收益_TOP{TOPN}_月策略口径_日前实时对比.xlsx")
+    out_xlsx = os.path.join(OUT_DIR, f"储能节点收益_TOP{TOPN}_月策略口径_日前实时对比_考虑四项费用.xlsx")
     make_investment_outputs_monthly(monthly_summary, out_xlsx, topn=TOPN)
 
     # 另存：月策略96点到Excel（有时很大，单独一个文件更清爽）
-    out_strategy_xlsx = os.path.join(OUT_DIR, "月策略_96点_日前实时.xlsx")
+    out_strategy_xlsx = os.path.join(OUT_DIR, "月策略_96点_日前实时_考虑四项费用.xlsx")
     with pd.ExcelWriter(out_strategy_xlsx, engine="openpyxl") as w:
         monthly_strategy.sort_values(["node", "market", "month", "slot"]).to_excel(w, sheet_name="Monthly_Strategy_96pt", index=False)
 
@@ -555,6 +572,6 @@ def main():
     print(f"- 投决Excel：{out_xlsx}")
     print(f"- 月策略96点Excel：{out_strategy_xlsx}")
 
-
+# TODO:增加月度交易回测需求，将月度策略回代到日电价曲线中计算收益
 if __name__ == "__main__":
     main()
