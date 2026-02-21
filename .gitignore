@@ -9,3 +9,22 @@ zhongchangqifenpeixishuRank/modified_excel_file_2024年1-12月分配系数清洗
 timeResolutionConversion/output_15min.xlsx
 SpotMarketDailyReview/output_data.xlsx
 
+# 数据文件
+*.xlsx
+*.xls
+*.csv
+*.pkl
+
+# 模型目录
+ElectricityPriceForecast/models/
+
+# Python
+__pycache__/
+*.pyc
+
+# IDE
+.idea/
+.vscode/
+
+# Jupyter
+.ipynb_checkpoints/
