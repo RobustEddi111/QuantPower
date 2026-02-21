@@ -1,3 +1,11 @@
-/ElectricityPriceForecast/models/dayahead/
-/data/**/*.xlsx
-/DataManage/**/*.xlsx
+ElectricityPriceForecast/models/dayahead/*
+data/**/*.xlsx
+DataManage/**/*.xlsx
+新疆月度结算单汇总/2024年1月-2025年6月结算单汇总(1).xlsx
+OwnerData2MySQL/2024年数据表（截止5月2日）.xlsx
+shangwangdianlSheetCombine/combined_sheets_multiple_files.xlsx
+zhongchangqifenpeixishuRank/modified_excel_file.xlsx
+zhongchangqifenpeixishuRank/modified_excel_file_2024年1-12月分配系数清洗版.xlsx
+timeResolutionConversion/output_15min.xlsx
+SpotMarketDailyReview/output_data.xlsx
+
