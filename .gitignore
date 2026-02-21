@@ -1,1 +1,3 @@
 /ElectricityPriceForecast/models/dayahead/
+/data/**/*.xlsx
+/DataManage/**/*.xlsx
