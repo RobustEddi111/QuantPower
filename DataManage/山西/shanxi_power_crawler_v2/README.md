@@ -1,7 +1,8 @@
-## 📄 文件5：README.md
-
+## 📄 README.md
+## （input() 交互式输入模式）
 ```markdown
 # 山西电力交易中心数据爬虫
+
 
 ## 📖 项目简介
 
@@ -56,7 +57,7 @@ python quick_check_cookie.py
 ### 4️⃣ 开始爬取数据
 
 ```bash
-python shanxi_power_crawler.py
+python shanxi_power_crawler_v2.py
 ```
 
 ---
@@ -351,7 +352,7 @@ shanxi_power_crawler/
 
 3. **开始使用**：
    ```bash
-   python shanxi_power_crawler.py
+   python shanxi_power_crawler_v2.py
    ```
 
 ---
