@@ -1,0 +1,13 @@
+# HTTP请求库
+requests==2.31.0
+
+# 数据处理
+pandas==2.1.4
+openpyxl==3.1.2
+
+# 日志和工具
+python-dateutil==2.8.2
+
+# 可选：如果需要更好的命令行交互
+# colorama==0.4.6
+# rich==13.7.0

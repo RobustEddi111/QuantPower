@@ -57,7 +57,7 @@ python quick_check_cookie.py
 ### 4️⃣ 开始爬取数据
 
 ```bash
-python shanxi_power_crawler_v2.py
+python shanxi_power_crawler_v1.py
 ```
 
 ---
@@ -352,7 +352,7 @@ shanxi_power_crawler/
 
 3. **开始使用**：
    ```bash
-   python shanxi_power_crawler_v2.py
+   python shanxi_power_crawler_v1.py
    ```
 
 ---

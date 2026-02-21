@@ -1,0 +1,80 @@
+[
+{
+    "domain": "pmos.sx.sgcc.com.cn",
+    "hostOnly": true,
+    "httpOnly": false,
+    "name": "Admin-Token",
+    "path": "/",
+    "sameSite": "unspecified",
+    "secure": false,
+    "session": true,
+    "storeId": "0",
+    "value": "f3487daa107e9f31f4c75152968f4275fdb7c021afb3f7ca474828b9e295e6fd17db5e0f111bb6ed4b1fb59ab76d8c2f16a065c05cc2cdeaf95ee794df7bf4c3.04581dbe783f0c0114d3d00839f95d4f3079d20b",
+    "id": 1
+},
+{
+    "domain": "pmos.sx.sgcc.com.cn",
+    "hostOnly": true,
+    "httpOnly": false,
+    "name": "ClientTag",
+    "path": "/",
+    "sameSite": "unspecified",
+    "secure": false,
+    "session": true,
+    "storeId": "0",
+    "value": "OUTNET_BROWSE",
+    "id": 2
+},
+{
+    "domain": "pmos.sx.sgcc.com.cn",
+    "hostOnly": true,
+    "httpOnly": false,
+    "name": "CurrentRoute",
+    "path": "/",
+    "sameSite": "unspecified",
+    "secure": false,
+    "session": true,
+    "storeId": "0",
+    "value": "/dashboard",
+    "id": 3
+},
+{
+    "domain": "pmos.sx.sgcc.com.cn",
+    "hostOnly": true,
+    "httpOnly": false,
+    "name": "Gray-Tag",
+    "path": "/",
+    "sameSite": "unspecified",
+    "secure": false,
+    "session": true,
+    "storeId": "0",
+    "value": "777878786a786e79",
+    "id": 4
+},
+{
+    "domain": "pmos.sx.sgcc.com.cn",
+    "hostOnly": true,
+    "httpOnly": false,
+    "name": "X-Ticket",
+    "path": "/",
+    "sameSite": "unspecified",
+    "secure": false,
+    "session": true,
+    "storeId": "0",
+    "value": "f3487daa107e9f31f4c75152968f4275fdb7c021afb3f7ca474828b9e295e6fd17db5e0f111bb6ed4b1fb59ab76d8c2f16a065c05cc2cdeaf95ee794df7bf4c3.04581dbe783f0c0114d3d00839f95d4f3079d20b",
+    "id": 5
+},
+{
+    "domain": "pmos.sx.sgcc.com.cn",
+    "hostOnly": true,
+    "httpOnly": false,
+    "name": "X-Token",
+    "path": "/",
+    "sameSite": "unspecified",
+    "secure": false,
+    "session": true,
+    "storeId": "0",
+    "value": "undefined",
+    "id": 6
+}
+]
