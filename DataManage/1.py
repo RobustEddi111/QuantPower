@@ -10,7 +10,7 @@ all_in_one_code = '''"""
 import os
 
 # 创建项目目录
-project_dir = "shanxi_power_crawler"
+project_dir = "shanxi_power_crawler_v2"
 if not os.path.exists(project_dir):
     os.makedirs(project_dir)
     print(f"✅ 创建目录: {project_dir}")
@@ -171,7 +171,7 @@ with open(os.path.join(project_dir, "quick_check_cookie.py"), "w", encoding="utf
     f.write(quick_check_py)
 print("✅ 创建文件: quick_check_cookie.py")
 
-# ==================== 文件4: shanxi_power_crawler.py ====================
+# ==================== 文件4: shanxi_power_crawler_v2.py ====================
 # 由于代码太长，分段写入
 crawler_py_part1 = """\\"""
 山西电力交易中心 - 日前节点边际电价爬虫
@@ -367,9 +367,9 @@ if __name__ == "__main__":
     main()
 """
 
-with open(os.path.join(project_dir, "shanxi_power_crawler.py"), "w", encoding="utf-8") as f:
+with open(os.path.join(project_dir, "shanxi_power_crawler_v2.py"), "w", encoding="utf-8") as f:
     f.write(crawler_py_part1)
-print("✅ 创建文件: shanxi_power_crawler.py")
+print("✅ 创建文件: shanxi_power_crawler_v2.py")
 
 # ==================== 文件5: README.md ====================
 readme_md = """# 山西电力交易中心数据爬虫
@@ -388,7 +388,7 @@ python quick_check_cookie.py
 
 ### 3. 开始爬取
 ```bash
-python shanxi_power_crawler.py
+python shanxi_power_crawler_v2.py
 ```
 
 ## 📖 使用说明
@@ -427,7 +427,7 @@ print("\\n包含以下文件：")
 print("  1. requirements.txt - 依赖包列表")
 print("  2. config.py - 配置文件")
 print("  3. quick_check_cookie.py - Cookie检测工具")
-print("  4. shanxi_power_crawler.py - 主爬虫程序")
+print("  4. shanxi_power_crawler_v2.py - 主爬虫程序")
 print("  5. README.md - 使用说明")
 print("\\n✨ 现在可以开始使用了！")
 print("="*70)
