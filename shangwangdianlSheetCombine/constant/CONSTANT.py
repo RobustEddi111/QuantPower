@@ -4,7 +4,7 @@
 """
 
 # 数据路径
-dataPath=r"D:\Test\交易平台导出上网电量test\导出于2026年1月15日"
+dataPath=r"D:\Test\交易平台导出上网电量test\导出于2026年2月24日"
 
 
 
